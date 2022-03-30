@@ -87,5 +87,8 @@ def check_temperature():
         make_block()
         
 #main function
-check_temperature()
+while len(blockchain) < 4:
+    check_temperature()
+
+print(blockchain)
  
