@@ -6,7 +6,7 @@ import random
 import requests
 import string
 
-uuidcapteur = uuid.uuid4()
+uuidcapteur = uuid.uuid3(uuid.NAMESPACE_DNS, "Pauvre Ferrari")
 print(type(uuidcapteur))
 blockchain = []
 prev_temp = 0
