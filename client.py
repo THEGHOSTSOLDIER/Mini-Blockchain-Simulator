@@ -4,7 +4,6 @@ import uuid
 import time
 import random
 import requests
-import string
 
 uuidcapteur = uuid.uuid3(uuid.NAMESPACE_DNS, "Pauvre Ferrari")
 print(type(uuidcapteur))
@@ -42,14 +41,6 @@ def make_block():
     'block': blockgenesis_serialized
     }
 
-    """
-    dt = {
-    'blockchain': blockchain,
-    'block': block_genesis
-    }
-    """
-    #dt_serialized = json.dumps(dt).encode('utf-8')
-
     block_hash = requests.post("http://127.0.0.1:5000", data=dt)
 
     print(block_hash.text)
@@ -64,21 +55,12 @@ def make_block():
     tab = tab.replace('hash', '')
     tab = tab.replace('timer', '')
     tab = tab.replace('nonce', '')
-    #tab.split(",")
 
     l = list(tab.split(","))
-
-    print(l[0])
 
     blockchain.append(l[0])
 
     print(blockchain[len(blockchain) - 1])
-
-    #block_hash = hashlib.sha256(block_serialized).hexdigest()
-
-    #blockchain.append(block_hash)
-
-    #print(block_serialized)
     
 def check_temperature():
     global prev_temp
@@ -92,4 +74,3 @@ while len(blockchain) < 4:
     check_temperature()
 
 print(blockchain)
- 
