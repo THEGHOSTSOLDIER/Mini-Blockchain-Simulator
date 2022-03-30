@@ -10,12 +10,13 @@ uuidcapteur = uuid.uuid3(uuid.NAMESPACE_DNS, "Pauvre Ferrari")
 print(type(uuidcapteur))
 blockchain = []
 prev_temp = 0
+gps_coordinates = (51, 38)
 
 ts = time.gmtime()
 prev_temp = round(random.uniform(-5,10),1)
 block_genesis = {
  'prev_hash': None,
- 'transactions': [str(uuidcapteur), prev_temp, time.strftime("%x %X", ts), (51, 28, 38)]
+ 'transactions': [str(uuidcapteur), prev_temp, time.strftime("%x %X", ts), gps_coordinates]
 }
 
 block_genesis_serialized = json.dumps(block_genesis).encode('utf-8')
@@ -30,7 +31,7 @@ def make_block():
     ts = time.gmtime()
     block = {
     'prev_hash': blockchain[len(blockchain) - 1],
-    'transactions': [str(uuidcapteur), prev_temp, time.strftime("%x %X", ts), (51, 28, 38)]
+    'transactions': [str(uuidcapteur), prev_temp, time.strftime("%x %X", ts), gps_coordinates]
     }
 
     blockgenesis_serialized = json.dumps(block_genesis).encode('utf-8')
