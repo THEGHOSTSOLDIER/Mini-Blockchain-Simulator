@@ -27,7 +27,7 @@ def pow(last_hash, transactions):
 
 class HelloHandler(tornado.web.RequestHandler):
     def get(self):
-        self.write("Just a test")
+        self.write("Please use \"post\" method instead of \"get\"")
 
     def post(self):
         global guess_hash
@@ -39,19 +39,15 @@ class HelloHandler(tornado.web.RequestHandler):
         print(block_unserialized["transactions"])
         start_time = time.time()
         nonce = pow(block_unserialized["prev_hash"], block_unserialized["transactions"])
-        #print("Blockchain : %s \nBlock : %s" % (blockchain, block))
-        #print("Nom : %s \nheure %s" % (user, passwd))
-        #self.write("Nom : %s \nheure %s" % (user, passwd))
         end_time = time.time()
         total_time = end_time - start_time
-        #guess_hash = json.dumps(guess_hash)
-        #total_time = json.dumps(total_time)
-        #nonce = json.dumps(nonce)
+
         data = {
             "hash": guess_hash,
             "timer": total_time,
             "nonce": nonce
         }
+
         data_serialized = json.dumps(data).encode('utf-8')
         print(guess_hash)
         print(total_time)
